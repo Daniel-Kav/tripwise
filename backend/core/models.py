@@ -89,3 +89,21 @@ class DriverProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.get_full_name()} - {self.company.name}" 
+    
+class Dispatch(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='dispatches')
+    driver = models.ForeignKey(DriverProfile, on_delete=models.CASCADE, related_name='dispatches')
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    start_location = models.CharField(max_length=100)
+    end_location = models.CharField(max_length=100)
+    status = models.CharField(max_length=20, default='PENDING')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.driver.user.get_full_name()} - {self.start_date}"
+    
