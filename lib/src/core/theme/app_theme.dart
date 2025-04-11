@@ -74,7 +74,6 @@ class AppTheme {
     colorScheme: const ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
-      background: backgroundColor,
       error: errorColor,
       surface: cardColor,
     ),
@@ -172,7 +171,6 @@ class AppTheme {
     colorScheme: const ColorScheme.dark(
       primary: primaryColor,
       secondary: secondaryColor,
-      background: Color(0xFF121212),
       error: errorColor,
       surface: Color(0xFF1E1E1E),
     ),
