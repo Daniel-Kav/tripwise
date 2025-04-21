@@ -21,22 +21,25 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView(
           children: [
-            Row(
-              children: [
-                const CircleAvatar(
-                  radius: 28,
-                  backgroundColor: Colors.orange,
-                  child: Icon(Icons.person, color: Colors.white, size: 32),
-                ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Anthony', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                    Text('Downtown Sharks', style: TextStyle(fontSize: 13, color: Colors.black54)),
-                  ],
-                ),
-              ],
+            GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed('/profile'),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 28,
+                    backgroundColor: Colors.orange,
+                    child: Icon(Icons.person, color: Colors.white, size: 32),
+                  ),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text('Anthony', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      Text('Downtown Sharks', style: TextStyle(fontSize: 13, color: Colors.black54)),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
             Container(
