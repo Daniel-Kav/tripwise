@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'splash_screen.dart';
+import 'login_screen.dart';
+import 'register_screen.dart';
+import 'forgot_password_screen.dart';
+import 'otp_screen.dart';
+import 'home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +36,15 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/forgot': (context) => const ForgotPasswordScreen(),
+        '/otp': (context) => const OtpScreen(),
+        '/home': (context) => const HomeScreen(),
+      },
     );
   }
 }
