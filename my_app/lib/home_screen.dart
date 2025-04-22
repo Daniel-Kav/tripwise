@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'tournament_screen.dart';
+import 'community_screen.dart';
+import 'shop_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = const [
+    _HomeMain(),
+    TournamentScreen(),
+    CommunityScreen(),
+    ShopScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -17,140 +34,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ListView(
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed('/profile'),
-              child: Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 28,
-                    backgroundColor: Colors.orange,
-                    child: Icon(Icons.person, color: Colors.white, size: 32),
-                  ),
-                  const SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text('Anthony', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                      Text('Downtown Sharks', style: TextStyle(fontSize: 13, color: Colors.black54)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('community\nRank', style: TextStyle(fontSize: 14, color: Colors.white)),
-                      SizedBox(height: 6),
-                      Text('8', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text('Tournament\nRank', style: TextStyle(fontSize: 14, color: Colors.white)),
-                      SizedBox(height: 6),
-                      Text('8', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Text('live tournaments', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text('Nairobi Championship', style: TextStyle(fontWeight: FontWeight.bold)),
-                      SizedBox(height: 8),
-                      Text('Today, 4:30 PM', style: TextStyle(color: Colors.black54, fontSize: 13)),
-                    ],
-                  ),
-                  const Spacer(),
-                  Column(
-                    children: [
-                      Icon(Icons.play_circle_outline, size: 32, color: Colors.black87),
-                      const SizedBox(height: 2),
-                      Text('watch', style: TextStyle(fontSize: 12)),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Text('top communities', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 48,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 4,
-                separatorBuilder: (context, index) => const SizedBox(width: 8),
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: const [
-                        Text('Nairobi East', style: TextStyle(fontWeight: FontWeight.bold)),
-                        SizedBox(width: 8),
-                        Icon(Icons.people, size: 16, color: Colors.black54),
-                        SizedBox(width: 4),
-                        Text('156 players', style: TextStyle(fontSize: 12, color: Colors.black54)),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Text('top shotters', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text('1.'),
-                  Text('2.'),
-                  Text('3.'),
-                  Text('4.'),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-          ],
-        ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -175,10 +61,169 @@ class HomeScreen extends StatelessWidget {
             label: 'Shop',
           ),
         ],
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         onTap: (index) {
-          // TODO: Implement navigation for other tabs
+          setState(() {
+            _selectedIndex = index;
+          });
         },
+      ),
+    );
+  }
+}
+
+class _HomeMain extends StatelessWidget {
+  const _HomeMain();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ListView(
+        children: [
+          // Profile section
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed('/profile'),
+            child: Row(
+              children: [
+                // Profile picture
+                const CircleAvatar(
+                  radius: 28,
+                  backgroundColor: Colors.orange,
+                  child: Icon(Icons.person, color: Colors.white, size: 32),
+                ),
+                const SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text('Anthony', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    Text('Downtown Sharks', style: TextStyle(fontSize: 13, color: Colors.black54)),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          
+          // Rank statistics card
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+            decoration: BoxDecoration(
+              color: Colors.orange,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Community\nRank', style: TextStyle(fontSize: 14, color: Colors.white)),
+                    SizedBox(height: 6),
+                    Text('8', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('Tournament\nRank', style: TextStyle(fontSize: 14, color: Colors.white)),
+                    SizedBox(height: 6),
+                    Text('8', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          
+          const SizedBox(height: 24),
+          
+          // Live tournaments section
+          const Text('Live Tournaments', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text('Nairobi Championship', style: TextStyle(fontWeight: FontWeight.bold)),
+                    SizedBox(height: 8),
+                    Text('Today, 4:30 PM', style: TextStyle(color: Colors.black54, fontSize: 13)),
+                  ],
+                ),
+                const Spacer(),
+                Column(
+                  children: const [
+                    Icon(Icons.play_circle_outline, size: 32, color: Colors.black87),
+                    SizedBox(height: 2),
+                    Text('Watch', style: TextStyle(fontSize: 12)),
+                  ],
+                )
+              ],
+            ),
+          ),
+          
+          const SizedBox(height: 24),
+          
+          // Top communities section
+          const Text('Top Communities', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 48,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: 4,
+              separatorBuilder: (context, index) => const SizedBox(width: 8),
+              itemBuilder: (context, index) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: const [
+                      Text('Nairobi East', style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(width: 8),
+                      Icon(Icons.people, size: 16, color: Colors.black54),
+                      SizedBox(width: 4),
+                      Text('156 players', style: TextStyle(fontSize: 12, color: Colors.black54)),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          
+          const SizedBox(height: 24),
+          
+          // Top shooters section
+          const Text('Top Shooters', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text('1.'),
+                Text('2.'),
+                Text('3.'),
+                Text('4.'),
+              ],
+            ),
+          ),
+          
+          const SizedBox(height: 24),
+        ],
       ),
     );
   }
