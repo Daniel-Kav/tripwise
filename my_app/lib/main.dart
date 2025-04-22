@@ -5,6 +5,7 @@ import 'register_screen.dart';
 import 'forgot_password_screen.dart';
 import 'otp_screen.dart';
 import 'home_screen.dart';
+import 'profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/forgot': (context) => const ForgotPasswordScreen(),
         '/otp': (context) => const OtpScreen(),
         '/home': (context) => const HomeScreen(),
+        '/profile': (context) => const ProfileScreen(),
       },
     );
   }
