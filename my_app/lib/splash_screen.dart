@@ -9,49 +9,133 @@ class SplashScreen extends StatelessWidget {
       // TODO: Replace with real auth check. For now, always go to login.
       Navigator.of(context).pushReplacementNamed('/login');
     });
+    
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 140,
-              height: 140,
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.orange.withOpacity(0.3),
-                    blurRadius: 20,
-                    spreadRadius: 5,
-                  )
+            // Logo container
+            SizedBox(
+              width: 200,
+              height: 200,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Cue sticks
+                  Transform.rotate(
+                    angle: -0.4,
+                    child: Container(
+                      width: 160,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        color: Colors.brown,
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                      ),
+                    ),
+                  ),
+                  Transform.rotate(
+                    angle: 0.4,
+                    child: Container(
+                      width: 160,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        color: Colors.brown,
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                      ),
+                    ),
+                  ),
+                  
+                  // 8-ball
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Center(
+                      child: Text(
+                        '8',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                  
+                  // Red ball
+                  Positioned(
+                    top: 50,
+                    right: 55,
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              child: Center(
-                child: Icon(Icons.sports_esports, size: 80, color: Colors.white),
+            ),
+            
+            const SizedBox(height: 20),
+            
+            // Banner with BILLIARD text
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: const Text(
+                'BILLIARD',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 2,
+                ),
               ),
             ),
-            const SizedBox(height: 32),
-            Text(
-              'BILLIARD',
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-                color: Colors.orange.shade800,
-                letterSpacing: 2,
-              ),
-            ),
+            
             const SizedBox(height: 8),
-            const Text(
-              'Clash',
-              style: TextStyle(
-                fontSize: 22,
-                color: Colors.black54,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 2,
-              ),
+            
+            // Clash text
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  '— ',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                Text(
+                  'Clash',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                Text(
+                  ' —',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
