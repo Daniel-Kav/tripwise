@@ -32,16 +32,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Forgot your password?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                const Text('Forgot your password?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 24),
                 TextField(
                   controller: phoneController,
-                  decoration: InputDecoration(labelText: 'Mobile Number'),
+                  decoration: const InputDecoration(labelText: 'Mobile Number'),
                   keyboardType: TextInputType.phone,
                 ),
                 if (error != null) ...[
-                  SizedBox(height: 8),
-                  Text(error!, style: TextStyle(color: Colors.red)),
+                  const SizedBox(height: 8),
+                  Text(error!, style: const TextStyle(color: Colors.red)),
                 ],
                 const SizedBox(height: 24),
                 ElevatedButton(
