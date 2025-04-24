@@ -58,17 +58,17 @@ class _OtpScreenState extends State<OtpScreen> {
                   builder: (context) {
                     final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
                     final phone = args != null && args['phone'] != null ? args['phone'] : 'your mobile number';
-                    return Text('An SMS was sent to $phone', style: TextStyle(fontSize: 18));
+                    return Text('An SMS was sent to $phone', style: const TextStyle(fontSize: 18));
                   },
                 ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: otpController,
-                  decoration: InputDecoration(labelText: 'Enter OTP'),
+                  decoration: const InputDecoration(labelText: 'Enter OTP'),
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 16),
-                Text('Resend code: 00:${secondsRemaining.toString().padLeft(2, '0')}', style: TextStyle(color: Colors.grey)),
+                Text('Resend code: 00:${secondsRemaining.toString().padLeft(2, '0')}', style: const TextStyle(color: Colors.grey)),
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: verifyOtp,
