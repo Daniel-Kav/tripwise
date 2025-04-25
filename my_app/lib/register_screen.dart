@@ -35,24 +35,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.sports_esports, size: 100, color: Colors.deepPurple),
+                const Icon(Icons.sports_esports, size: 100, color: Colors.deepPurple),
                 const SizedBox(height: 16),
-                Text('Create Account', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                const Text('Create Account', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 32),
                 TextField(
                   controller: phoneController,
-                  decoration: InputDecoration(labelText: 'Mobile Number'),
+                  decoration: const InputDecoration(labelText: 'Mobile Number'),
                   keyboardType: TextInputType.phone,
                 ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: passwordController,
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'Password'),
                   obscureText: true,
                 ),
                 if (error != null) ...[
-                  SizedBox(height: 8),
-                  Text(error!, style: TextStyle(color: Colors.red)),
+                  const SizedBox(height: 8),
+                  Text(error!, style: const TextStyle(color: Colors.red)),
                 ],
                 const SizedBox(height: 24),
                 ElevatedButton(
