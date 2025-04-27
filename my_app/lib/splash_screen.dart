@@ -107,9 +107,9 @@ class SplashScreen extends StatelessWidget {
             const SizedBox(height: 8),
             
             // Clash text
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
                   '— ',
                   style: TextStyle(
