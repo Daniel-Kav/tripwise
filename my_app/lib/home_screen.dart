@@ -82,6 +82,7 @@ class _HomeMain extends StatelessWidget {
       child: Column(
         children: [
           // Profile section
+
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed('/profile'),
             child: const Row(
@@ -102,7 +103,7 @@ class _HomeMain extends StatelessWidget {
                         fontSize: 18
                       )
                     ),
-                    Text('Downtown Sharks', 
+                    Text('Downtown Sharkss', 
                       style: TextStyle(
                         fontSize: 14, 
                         color: Colors.black54
